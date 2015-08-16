@@ -1,0 +1,29 @@
+{
+  "name": "react-pmvc",
+  "version": "0.0.0",
+  "description": "A very simple implementation of server-side React rendering",
+  "main": "server.js",
+  "repository": "pmvc/react-atomic-ui",
+  "keywords": [
+    "react",
+    "reactjs"
+  ],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "0.13.3",
+    "react-atomic-ui": "^0.0.1",
+    "flux-router-component": "^0.5.0",
+    "fixed-data-table": "*",
+    "superagent": "^0.21.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.8.3",
+    "css-loader": "^0.9.1",
+    "style-loader": "^0.8.1",
+    "jsx-loader": "^0.12.0",
+    "html-loader": "0.2.3",
+    "file-loader": "^0.8.1",
+    "json-loader": "^0.5.1"
+  }
+}

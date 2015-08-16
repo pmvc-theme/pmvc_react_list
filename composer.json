@@ -1,0 +1,17 @@
+{
+    "name": "pmvc-theme/pmvc_react_list",
+    "description": "fixed-data-table wrapper",
+    "type": "library",
+    "keywords": ["hello", "theme", "pmvc", "react"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hill",
+            "email": "hill@kimo.com"
+        }
+    ],
+    "require": {
+        "pmvc-plugin/view_react": "*"
+    },
+    "minimum-stability": "dev"
+}
