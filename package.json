@@ -13,9 +13,7 @@
   "devDependencies": {
     "fixed-data-table": "*",
     "react": "^0.14.3",
-    "react-dom": "^0.14.0",
-    "flux": "^2.1.1",
-    "immutable": "^3.7.4",
+    "react-dom": "^0.14.3",
     "webpack": "^1.12.2",
     "babel-core": "^5.x",
     "babel-loader": "^5.x"

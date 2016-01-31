@@ -20,10 +20,8 @@ module.exports = {
         },
 	module: {
 	    loaders: [
-                  { test:/\.html$/, loader: 'html-loader' },
-                  { test:/\.json$/, loader: 'json-loader' },
-                  { test: /\.js$/,    loader: "jsx-loader?harmony&sourceMap" },
-                  { test: /\.jsx$/,   loader: "jsx-loader?harmony&sourceMap" },
+                  { test: /\.js$/,  loader: "babel-loader?cacheDirectory" },
+                  { test: /\.jsx$/, loader: "babel-loader?cacheDirectory" },
                   { test: /\.(otf|eot|svg|ttf|woff)/, loader: 'url-loader?limit=8192' }
 	    ]
 	},

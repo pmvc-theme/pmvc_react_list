@@ -1,9 +1,10 @@
-var React=require('react');
-MyApp = React.createFactory(require('./pages/index.jsx'));
+let React=require('react');
+let MyApp = React.createFactory(require('./pages/index'));
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  window.app=React.render(MyApp(REACT_DATA), document.getElementById('app'));
-  window.React=React;
+  let ReactDOM = require('react-dom');
+  window.app=MyApp;
+  ReactDOM.render(new MyApp(REACT_DATA), document.getElementById('app'));
+  window.ReactDOM=ReactDOM;
 }else{
-  global.React=React;
   global.app=MyApp;
 }

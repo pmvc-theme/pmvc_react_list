@@ -6,9 +6,17 @@ export default class List extends Component
     constructor(props)
     {
         super(props);
+        let width = 1000;
+        let height = 1000;
+        if (props.tableWidth) {
+            width = props.tableWidth;
+        }
+        if (props.tableHeight) {
+            height = props.tableHeight;
+        }
         this.state = {
-            tableWidth:1000,
-            tableHeight:1000,
+            tableWidth:width,
+            tableHeight:height,
             columnWidths: {
                 col1: 600
             }
@@ -75,8 +83,8 @@ export default class List extends Component
   {
     let win = window;
     this.setState({
-      tableWidth: win.innerWidth -50,
-      tableHeight: win.innerHeight -30,
+     // tableWidth: win.innerWidth -50,
+     // tableHeight: win.innerHeight -30,
     });
   } 
   _onColumnResizeEndCallback(newColumnWidth, columnKey)
