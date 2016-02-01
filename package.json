@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "pmvc list template",
   "main": "./src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
@@ -10,8 +10,10 @@
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
+  "dependencies": {
+    "fixed-data-table": "*"
+  },
   "devDependencies": {
-    "fixed-data-table": "*",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "webpack": "^1.12.2",
