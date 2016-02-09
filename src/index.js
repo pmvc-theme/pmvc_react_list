@@ -1,3 +1,4 @@
 // Organisms
-export { default as  List } from './organisms/list';
+export { default as  List } from './templates/list';
+export { default as  Table } from './templates/table';
 
