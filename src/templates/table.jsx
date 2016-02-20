@@ -27,20 +27,7 @@ export default class Table extends Component
           <SimpleTable
             rowsCount={rows.length}
             {...this.props}
-            >
-            <Column
-              header={<Cell>Product</Cell>}
-              cell={({rowIndex, ...cellProps}) => (
-                <Cell {...cellProps}>{rows[rowIndex][0]}</Cell>
-              )}
             />
-            <Column
-              header={<Cell>Count</Cell>}
-              cell={({rowIndex, ...cellProps}) => (
-                <Cell {...cellProps}>{rows[rowIndex][1]}</Cell>
-              )}
-            />
-          </SimpleTable>
         );  
   }
 
