@@ -7961,6 +7961,10 @@
 	  }
 	};
 
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+
 	var ReactEmptyComponent = function ReactEmptyComponent(instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -7969,7 +7973,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function construct(element) {},
 	  mountComponent: function mountComponent(rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -18692,7 +18696,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.7';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 147 */
@@ -19678,9 +19682,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _organismsList = __webpack_require__(159);
+	var _templatesList = __webpack_require__(159);
 
-	var _organismsList2 = _interopRequireDefault(_organismsList);
+	var _templatesList2 = _interopRequireDefault(_templatesList);
 
 	var PMVCReactList = (function (_Component) {
 	    _inherits(PMVCReactList, _Component);
@@ -19695,7 +19699,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var rows = [['a1', 'b1', 'c1'], ['a2', 'b2', 'c2'], ['a3', 'b3', 'c3']];
-	            return _react2['default'].createElement(_organismsList2['default'], { rows: rows });
+	            return _react2['default'].createElement(_templatesList2['default'], { rows: rows });
 	        }
 	    }]);
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import TableList from '../organisms/list'; 
+import TableList from '../templates/list'; 
 
 export default class PMVCReactList extends Component
 {

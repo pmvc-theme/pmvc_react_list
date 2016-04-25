@@ -197,9 +197,9 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _organismsList = __webpack_require__(159);
+	var _templatesList = __webpack_require__(159);
 
-	var _organismsList2 = _interopRequireDefault(_organismsList);
+	var _templatesList2 = _interopRequireDefault(_templatesList);
 
 	var PMVCReactList = (function (_Component) {
 	    _inherits(PMVCReactList, _Component);
@@ -214,7 +214,7 @@ webpackJsonp([0],[
 	        key: 'render',
 	        value: function render() {
 	            var rows = [['a1', 'b1', 'c1'], ['a2', 'b2', 'c2'], ['a3', 'b3', 'c3']];
-	            return _react2['default'].createElement(_organismsList2['default'], { rows: rows });
+	            return _react2['default'].createElement(_templatesList2['default'], { rows: rows });
 	        }
 	    }]);
 
