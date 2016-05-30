@@ -5,11 +5,6 @@
 
 # PMVC React List theme 
 ===============
-http://facebook.github.io/fixed-data-table/ wrapper
-
-## known issue
-   * generated is different on the client or server
-      * https://github.com/facebook/fixed-data-table/issues/44
 
 ## Install with Composer
 ### 1. Download composer
