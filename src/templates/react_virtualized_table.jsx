@@ -1,7 +1,5 @@
 import React, {Component} from 'react'; 
-import {RVHeader, RVBody, ScrollSync} from '../organisms/ReactVirtualized';
-export {default as Cell} from '../organisms/simple_cell';
-export {default as Column} from '../organisms/simple_column';
+import {RVHeader, RVBody, ScrollSync} from '../organisms/react_virtualized';
 
 export default class ReactVirtualizedTable extends Component
 {

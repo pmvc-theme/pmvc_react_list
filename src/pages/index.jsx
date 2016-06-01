@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import TableList, {Cell, Column} from '../templates/ReactVirtualizedTable';
+import {List as TableList, Cell, Column} from '../index';
 
 export default class PMVCReactList extends Component
 {
