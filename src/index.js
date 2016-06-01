@@ -1,5 +1,5 @@
 // Templates 
-export { default as  List } from './templates/list';
+export { default as  List } from './templates/ReactVirtualized';
 export { default as  Table } from './templates/table';
 
 // Organisms

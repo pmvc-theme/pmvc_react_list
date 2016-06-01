@@ -16,12 +16,21 @@ module.exports = {
           fs: "empty",
         },
         resolve: {
-            extensions: ['','.js','.jsx']
+            extensions: ['','.js','.jsx'],
+            alias: {
+                "react": __dirname + '/node_modules/react'
+            }
         },
 	module: {
 	    loaders: [
-                  { test: /\.js$/,  loader: "babel-loader?cacheDirectory" },
-                  { test: /\.jsx$/, loader: "babel-loader?cacheDirectory" },
+                  { 
+                    test: /(.js|.jsx)$/, 
+                    exclude: /node_modules/,
+                    loader: "babel-loader", 
+                    query:{
+                        cacheDirectory:true, 
+                    } 
+                  },
                   { test: /\.(otf|eot|svg|ttf|woff)/, loader: 'url-loader?limit=8192' }
 	    ]
 	},
