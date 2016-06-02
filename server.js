@@ -2,13 +2,15 @@
 //process.argv.forEach(function (val, index, arr) {
 //  console.log(index + ': ' + val,arr);
 //});
-var ReactDOM = require('react-dom/server');
-var args = process.argv.slice(2);
-var myJson = JSON.parse(args.join(''));
-var file = './assets/node.bundle.js'; 
-require(file);
+var fs = require('fs');
+var fd = process.stdin.fd;
+var buffer = fs.readSync(fd, 4096)[0];
+
+require('./assets/node.bundle.js');
+var myJson = JSON.parse(buffer);
 var MyApp = global.app;
-var tmp = ReactDOM.renderToString(MyApp(
+var ReactServer = global.reactServer;
+var tmp = ReactServer.renderToString(MyApp(
     myJson 
 ));
 console.log('<!--start-->'+tmp);

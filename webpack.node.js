@@ -5,7 +5,7 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 module.exports = {
 //	devtool: 'sourcemap',
 	entry: {
-           main: "./src/entry.js",
+           main: "./src/server.js",
         },
 	output: {
 		filename: "node.bundle.js",
