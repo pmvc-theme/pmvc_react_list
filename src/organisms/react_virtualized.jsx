@@ -49,6 +49,13 @@ export class RVGrid extends Component
             columnWidth={({index})=>{
                 return props.getColWidth(index,props);
             }}
+            cellStyle={({rowIndex, columnIndex})=>{
+                return props.getColStyle(
+                    rowIndex,
+                    columnIndex,
+                    props
+                );
+            }}
             cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
                 let row = props.rowLocator(rowIndex,rows);
                 return props.colLocator(columnIndex,row);
@@ -72,6 +79,9 @@ RVGrid.defaultProps = {
     },
     getColWidth: (index, props)=>{
         return 100;
+    },
+    getColStyle: (colIndex, rowIndex, props)=>{
+        return {}
     }
 };
 
