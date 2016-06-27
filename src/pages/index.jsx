@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import {List as TableList, Cell, Column} from '../index';
+import {TableList, Cell, Column} from '../index';
 
 export default class PMVCReactList extends Component
 {

@@ -2,6 +2,7 @@
 //process.argv.forEach(function (val, index, arr) {
 //  console.log(index + ': ' + val,arr);
 //});
+
 var fs = require('fs');
 var fd = process.stdin.fd;
 var buffer = fs.readSync(fd, 4096)[0];

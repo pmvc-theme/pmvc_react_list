@@ -29,11 +29,13 @@ export class RVGrid extends Component
     {
         let state = this.state;
         let props = this.props;
-        let rows = null;
+        let rows = props.rows;
+        let colCount = 0;
         if (props.rowsLocator) {
             rows = props.rowsLocator(props.rows);
-        } else {
-            rows = props.rows;
+        }
+        if (rows[0] && rows[0].length) {
+            colCount = rows[0].length;           
         }
         return (
           <Grid
@@ -43,7 +45,7 @@ export class RVGrid extends Component
                 return props.getRowHeight(index,props);
             }}
             rowCount={rows.length}
-            columnCount={rows[0].length}
+            columnCount={colCount}
             columnWidth={({index})=>{
                 return props.getColWidth(index,props);
             }}
@@ -57,6 +59,8 @@ export class RVGrid extends Component
     }
 }
 RVGrid.defaultProps = {
+    rows: [],
+    rowsLocator: null,
     rowLocator: (index, rows)=>{
         return rows[index];
     },
@@ -77,7 +81,9 @@ export class RVHeader extends Component
     {
         let props = this.props;
         let children = props.children; 
-        if (!('length' in children)) {
+        if (!children) {
+            children = [];
+        } else if (!('length' in children)) {
             children = [children];
         }
         return (
@@ -120,7 +126,9 @@ export class RVBody extends Component
     {
         let props = this.props;
         let children = props.children; 
-        if (!('length' in children)) {
+        if (!children) {
+            children = [];
+        } else if (!('length' in children)) {
             children = [children];
         }
         return (

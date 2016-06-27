@@ -14,7 +14,9 @@ export default class ReactVirtualizedTable extends Component
                             <RVHeader {...props} 
                                 scrollLeft={scrollLeft}
                             />
-                            <RVBody {...props} onScroll={onScroll}/>
+                            <RVBody {...props}
+                                onScroll={onScroll}
+                            />
                         </div>
                     )
                 }}
