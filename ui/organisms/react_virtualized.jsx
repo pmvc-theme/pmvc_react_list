@@ -168,6 +168,7 @@ export class RVBody extends Component
                     }
                     return jsx;
                 }}
+                style={{overflow:'auto'}}
             />
         );
     }
