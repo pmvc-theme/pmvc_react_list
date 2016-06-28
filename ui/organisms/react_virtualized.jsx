@@ -34,8 +34,10 @@ export class RVGrid extends Component
         if (props.rowsLocator) {
             rows = props.rowsLocator(props.rows);
         }
-        if (rows[0] && rows[0].length) {
+        if (rows && rows[0] && rows[0].length) {
             colCount = rows[0].length;           
+        } else {
+            return null;
         }
         return (
           <Grid
