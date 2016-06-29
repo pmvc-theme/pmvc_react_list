@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; 
 import {Grid} from 'react-virtualized'; 
 import {
+    mixClass,
     assign
 } from 'react-atomic-molecule';
 
@@ -31,6 +32,7 @@ export class RVGrid extends Component
         let props = this.props;
         let rows = props.rows;
         let colCount = 0;
+        let rowCount = 0;
         if (props.rowsLocator) {
             rows = props.rowsLocator(props.rows);
         }
@@ -40,6 +42,7 @@ export class RVGrid extends Component
             } else {
                 colCount = 1;
             }
+            rowCount = rows.length;
         } else {
             return null;
         }
@@ -50,16 +53,21 @@ export class RVGrid extends Component
             rowHeight={({index})=>{
                 return props.getRowHeight(index,props);
             }}
-            rowCount={rows.length}
+            rowCount={rowCount}
+            overscanRowCount={0}
             columnCount={colCount}
             columnWidth={({index})=>{
                 return props.getColWidth(index,props);
             }}
             cellStyle={({rowIndex, columnIndex})=>{
-                return props.getColStyle(
+                let style =  props.getColStyle(
                     rowIndex,
                     columnIndex,
                     props
+                );
+                return assign(
+                    style,
+                    {position:'absolute'}
                 );
             }}
             cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
@@ -67,6 +75,12 @@ export class RVGrid extends Component
                 return props.colLocator(columnIndex,row);
             }}
             {...props}
+            style={assign(
+                props.style,
+                {
+                    position:'relative'
+                }
+            )}
           />
         );  
     }
