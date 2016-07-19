@@ -20,6 +20,8 @@ export default class SimpleHeader extends Component
                         React.Children.forEach(children, (child, key)=>{
                             props = assign({atom:'th', key:key}, child.props);
                             header = props.header;
+                            delete props.header;
+                            delete props.cell;
                             if (React.isValidElement(header)) {
                               jsx = React.cloneElement(header, props );
                             } else if (typeof header === 'function') {

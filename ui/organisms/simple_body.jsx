@@ -38,6 +38,8 @@ export default class SimpleBody extends Component
         React.Children.forEach(children, (child, key)=>{
             props = assign({atom:'td', key:key, rowIndex:rowIndex}, child.props);
             cell = props.cell;
+            delete props.header;
+            delete props.cell;
             if (React.isValidElement(cell)) {
               jsx = React.cloneElement(cell, props );
             } else if (typeof cell === 'function') {
