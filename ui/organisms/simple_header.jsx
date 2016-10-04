@@ -12,7 +12,7 @@ export default class SimpleHeader extends Component
         return (
             <thead>
                 <tr>
-                   {()=>{
+                   {(()=>{
                         let arr = [];
                         let props;
                         let header;
@@ -34,7 +34,7 @@ export default class SimpleHeader extends Component
                             arr.push(jsx);
                         })
                         return arr;
-                   }()}
+                   })()}
                 </tr>
             </thead>
         );
