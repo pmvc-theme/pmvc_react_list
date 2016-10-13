@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "pmvc list template",
   "main": "./build/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "react-virtualized": "*",
-    "react-atomic-molecule": "*"
+    "react-atomic-molecule": ">=0.0.42"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
