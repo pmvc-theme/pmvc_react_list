@@ -16,7 +16,18 @@ develop(){
     #webpack --config webpack.node.js
 }
 
+build(){
+    rm -rf build
+    BABEL_ENV=build babel ui -d build/ui
+    BABEL_ENV=build babel src -d build/src
+    mv build/src/rv.js ./
+    mv build/src/fixedDataTable.js ./
+}
+
 case "$1" in
+  build)
+    build 
+    ;;
   p)
     production
     ;;
