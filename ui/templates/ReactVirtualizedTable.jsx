@@ -25,3 +25,5 @@ const ReactVirtualizedTable = (props) =>
 ReactVirtualizedTable.defaultProps = {
     headerHeight: 40
 };
+
+export default ReactVirtualizedTable;
