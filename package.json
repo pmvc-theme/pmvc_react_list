@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "pmvc list template",
   "main": "./build/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
@@ -11,6 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "get-object-value": "*",
     "react-atomic-molecule": "*"
   },
   "devDependencies": {

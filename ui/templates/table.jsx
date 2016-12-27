@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SimpleTable from '../organisms/simple_table';
 import Column from '../organisms/simple_column';
 import Cell from '../organisms/simple_cell';
+import get from 'get-object-value';
 
 
 export default class Table extends Component
@@ -17,11 +18,9 @@ export default class Table extends Component
     {
         let state = this.state;
         let props = this.props;
-        let rows = null;
+        let rows = get(props, ['rows'], []);
         if (props.rowsLocator) {
-            rows = props.rowsLocator(props.rows);
-        } else {
-            rows = props.rows;
+            rows = props.rowsLocator(rows);
         }
         return (
           <SimpleTable
