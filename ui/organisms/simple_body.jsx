@@ -36,7 +36,7 @@ export default class SimpleBody extends Component
         let cell;
         let jsx;
         React.Children.forEach(children, (child, key)=>{
-            props = assign({atom:'td', key:key, rowIndex:rowIndex}, child.props);
+            props = assign({atom:'td', key:key, rowIndex:rowIndex, columnIndex:key}, child.props);
             cell = props.cell;
             delete props.header;
             delete props.cell;
@@ -44,10 +44,15 @@ export default class SimpleBody extends Component
               jsx = React.cloneElement(cell, props );
             } else if (typeof cell === 'function') {
               jsx = cell(props);
-            } else {
-              jsx = (
-                <SemanticUI {...props} />
-              );
+              if (!React.isValidElement(jsx)) {
+                delete props.rowIndex;
+                delete props.columnIndex;
+                jsx = (
+                    <SemanticUI {...props}>
+                    {jsx}
+                    </SemanticUI>
+                );
+              }
             }
             arr.push(jsx);
         })
