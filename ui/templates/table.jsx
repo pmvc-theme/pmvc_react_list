@@ -10,21 +10,18 @@ export default class Table extends Component
     constructor(props)
     {
         super(props);
-        this.state = {
-        }
     }
 
     render()
     {
-        let state = this.state;
-        let props = this.props;
+        const props = this.props;
         let rows = get(props, ['rows'], []);
         if (props.rowsLocator) {
             rows = props.rowsLocator(rows);
         }
         return (
           <SimpleTable
-            rowsCount={rows.length}
+            rowsCount={get(rows,['length'])}
             {...this.props}
             />
         );  
