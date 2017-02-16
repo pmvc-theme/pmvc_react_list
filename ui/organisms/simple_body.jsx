@@ -1,6 +1,5 @@
 import React, {Component} from 'react'; 
 import {
-    assign, 
     SemanticUI
 } from 'react-atomic-molecule';
 export default class SimpleBody extends Component
@@ -35,13 +34,12 @@ export default class SimpleBody extends Component
         let children = this.props.children; 
         let cell;
         let jsx;
+        const clone = React.cloneElement; 
         React.Children.forEach(children, (child, key)=>{
-            props = assign({atom:'td', key:key, rowIndex:rowIndex, columnIndex:key}, child.props);
-            cell = props.cell;
-            delete props.header;
-            delete props.cell;
+            props = {atom:'td', key:key, rowIndex:rowIndex, columnIndex:key};
+            cell = child.props.cell;
             if (React.isValidElement(cell)) {
-              jsx = React.cloneElement(cell, props );
+              jsx = clone(cell, props);
             } else if (typeof cell === 'function') {
               jsx = cell(props);
               if (!React.isValidElement(jsx)) {

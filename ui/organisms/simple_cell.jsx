@@ -8,8 +8,9 @@ export default class SimpleCell extends Component
 {
     render()
     {
+        const {columnIndex, ...others} = this.props;
         return (
-            <SemanticUI {...this.props} />
+            <SemanticUI {...others} />
         );
     }
 }
