@@ -1,8 +1,5 @@
 import React from 'react'; 
 import {Grid} from 'react-virtualized'; 
-import {
-    assign
-} from 'react-atomic-molecule';
 
 const RVGrid = (props) =>
 {
@@ -39,23 +36,20 @@ const RVGrid = (props) =>
                 columnIndex,
                 props
             );
-            return assign(
-                style,
-                {position:'absolute'}
-            );
+            return {
+                ...style,
+                position:'absolute'
+            };
         }}
         cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
             let row = props.rowLocator(rowIndex,rows);
             return props.colLocator(columnIndex,row);
         }}
         {...props}
-        style={assign(
-            {},
-            props.style,
-            {
-                position:'relative'
-            }
-        )}
+        style={{
+            ...props.style,
+            position:'relative'
+        }}
       />
     );  
 }

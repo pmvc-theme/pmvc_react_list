@@ -1,8 +1,5 @@
 import React, {Component} from 'react'; 
-import {
-    assign, 
-    SemanticUI
-} from 'react-atomic-molecule';
+import { SemanticUI } from 'react-atomic-molecule';
 
 export default class SimpleHeader extends Component
 {
@@ -15,7 +12,10 @@ export default class SimpleHeader extends Component
         let jsx;
         let emptyHeaderCount = 0;
         React.Children.forEach(children, (child, key)=>{
-            props = assign({atom:'th', key:key}, child.props);
+            if (!child) {
+                return;
+            }
+            props = {atom:'th', key:key, ...child.props};
             if (!props.header) {
                 emptyHeaderCount++;
             }

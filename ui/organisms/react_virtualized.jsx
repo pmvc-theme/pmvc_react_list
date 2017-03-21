@@ -1,7 +1,4 @@
 import React from 'react'; 
-import {
-    assign
-} from 'react-atomic-molecule';
 import RVGrid from '../organisms/RVGrid';
 
 const  RVHeader = (props) =>
@@ -23,13 +20,11 @@ const  RVHeader = (props) =>
                     return null;
                 }
                 let header = children[columnIndex].props.header;
-                let headerProps = assign(
-                    {
-                        columnIndex: columnIndex,
-                        rowIndex: rowIndex,
-                        isScrolling: isScrolling
-                    }
-                );
+                let headerProps = {
+                    columnIndex: columnIndex,
+                    rowIndex: rowIndex,
+                    isScrolling: isScrolling
+                };
                 let jsx;
                 if (React.isValidElement(header)) {
                   jsx = React.cloneElement(header, headerProps);
@@ -62,13 +57,11 @@ const RVBody = (proos) =>
                     return null;
                 }
                 let cell = children[columnIndex].props.cell;
-                let cellProps = assign(
-                    {
-                        columnIndex: columnIndex,
-                        rowIndex: rowIndex,
-                        isScrolling: isScrolling
-                    }
-                );
+                let cellProps = {
+                    columnIndex: columnIndex,
+                    rowIndex: rowIndex,
+                    isScrolling: isScrolling
+                };
                 let jsx;
                 if (React.isValidElement(cell)) {
                   jsx = React.cloneElement(cell, cellProps);
