@@ -12,7 +12,6 @@ export default class SimpleTable extends Component
     {
         let classes = mixClass (
             this.props.className,
-            'fixed',
             {
                 single: this.props.singleLine,
                 line: this.props.singleLine
