@@ -4,17 +4,18 @@ import {Grid} from 'react-virtualized';
 const RVGrid = (props) =>
 {
     let rows = props.rows;
-    let colCount = 0;
     let rowCount = 0;
+    let colCount = 0;
     if (props.rowsLocator) {
         rows = props.rowsLocator(props.rows);
     }
     if (rows && rows[0]) {
-        if (Array.isArray(rows[0])) {
-            colCount = rows[0].length;           
-        } else {
-            colCount = 1;
-        }
+        React.Children.forEach(props.children, (child, key)=>{
+            if (!child) {
+                return;
+            }
+            colCount++;
+        });
         rowCount = rows.length;
     } else {
         return null;

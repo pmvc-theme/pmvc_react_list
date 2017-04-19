@@ -1,30 +1,19 @@
 import React, {Component} from 'react'; 
 import SimpleTable from '../organisms/simple_table';
-import Column from '../organisms/simple_column';
-import Cell from '../organisms/simple_cell';
 import get from 'get-object-value';
 
-
-export default class Table extends Component
+const Table = (props) =>
 {
-    constructor(props)
-    {
-        super(props);
+    let rows = get(props, ['rows'], []);
+    if (props.rowsLocator) {
+        rows = props.rowsLocator(rows);
     }
-
-    render()
-    {
-        const props = this.props;
-        let rows = get(props, ['rows'], []);
-        if (props.rowsLocator) {
-            rows = props.rowsLocator(rows);
-        }
-        return (
-          <SimpleTable
-            rowsCount={get(rows,['length'])}
-            {...this.props}
-            />
-        );  
-  }
-
+    return (
+      <SimpleTable
+        rowsCount={get(rows,['length'])}
+        {...props}
+        />
+    );  
 }
+
+export default Table;

@@ -1,35 +1,54 @@
-import React from 'react'; 
+import React, {Children, cloneElement} from 'react'; 
 import RVGrid from '../organisms/RVGrid';
+
+const isArray = Array.isArray;
+
+const getChildren = (props) =>
+{
+    let children = [];
+    if (!props.children) {
+        return children;
+    }
+    Children.forEach(props.children, (child)=>{
+        if (!child) {
+            return;
+        }
+        if (isArray(child)) {
+            children.concat(child);
+        } else {
+            children.push(child);
+        }
+    });
+    return children;
+}
 
 const  RVHeader = (props) =>
 {
-    let children = props.children; 
-    if (!children) {
-        children = [];
-    } else if (!('length' in children)) {
-        children = [children];
-    }
+    
+    let children = getChildren(props); 
     return (
         <RVGrid 
             {...props}
             height={props.headerHeight}
             rowHeight={props.headerHeight}
             rowCount={1}
-            cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, ...cellProps}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
                 let header = children[columnIndex].props.header;
-                let headerProps = {
+                cellProps = {
+                    ...cellProps,
+                    key: rowIndex+'-'+columnIndex,
                     columnIndex: columnIndex,
-                    rowIndex: rowIndex,
-                    isScrolling: isScrolling
+                   // rowIndex: rowIndex,
+                   // isScrolling: isScrolling
                 };
                 let jsx;
                 if (React.isValidElement(header)) {
-                  jsx = React.cloneElement(header, headerProps);
+                  jsx = cloneElement(header, cellProps);
                 } else if (typeof header === 'function') {
-                  jsx = header(headerProps);
+                  jsx = header(cellProps);
                 } else {
                   jsx = header;
                 }
@@ -41,30 +60,27 @@ const  RVHeader = (props) =>
 }
 
 
-const RVBody = (proos) =>
+const RVBody = (props) =>
 {
-    let children = props.children; 
-    if (!children) {
-        children = [];
-    } else if (!('length' in children)) {
-        children = [children];
-    }
+    let children = getChildren(props); 
     return (
         <RVGrid 
             {...props}
-            cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, ...cellProps}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
                 let cell = children[columnIndex].props.cell;
-                let cellProps = {
+                cellProps = {
+                    ...cellProps,
+                    key: rowIndex+'-'+columnIndex,
                     columnIndex: columnIndex,
                     rowIndex: rowIndex,
-                    isScrolling: isScrolling
+                    //isScrolling: isScrolling
                 };
                 let jsx;
                 if (React.isValidElement(cell)) {
-                  jsx = React.cloneElement(cell, cellProps);
+                  jsx = cloneElement(cell, cellProps);
                 } else if (typeof cell === 'function') {
                   jsx = cell(cellProps);
                 } else {
