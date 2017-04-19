@@ -1,4 +1,6 @@
 import React, {Children, cloneElement} from 'react'; 
+import { SemanticUI } from 'react-atomic-molecule';
+
 import RVGrid from '../organisms/RVGrid';
 
 const isArray = Array.isArray;
@@ -32,7 +34,7 @@ const  RVHeader = (props) =>
             height={props.headerHeight}
             rowHeight={props.headerHeight}
             rowCount={1}
-            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, ...cellProps}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, style, ...cellProps}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
@@ -41,8 +43,6 @@ const  RVHeader = (props) =>
                     ...cellProps,
                     key: rowIndex+'-'+columnIndex,
                     columnIndex: columnIndex,
-                   // rowIndex: rowIndex,
-                   // isScrolling: isScrolling
                 };
                 let jsx;
                 if (React.isValidElement(header)) {
@@ -52,7 +52,14 @@ const  RVHeader = (props) =>
                 } else {
                   jsx = header;
                 }
-                return jsx;
+                return (
+                    <SemanticUI
+                        style={{
+                            ...Styles.headerCell,
+                            ...style
+                        }}
+                    >{jsx}</SemanticUI>
+                );
             }}
             style={{overflow:'hidden'}}
         />
@@ -66,7 +73,7 @@ const RVBody = (props) =>
     return (
         <RVGrid 
             {...props}
-            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, ...cellProps}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, style, ...cellProps}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
@@ -86,7 +93,14 @@ const RVBody = (props) =>
                 } else {
                   jsx = cell;
                 }
-                return jsx;
+                return (
+                    <SemanticUI
+                        style={{
+                            ...Styles.cell,
+                            ...style
+                        }}
+                    >{jsx}</SemanticUI>
+                );
             }}
             style={{overflow:'auto'}}
         />
@@ -94,3 +108,14 @@ const RVBody = (props) =>
 }
 
 export {RVHeader, RVBody};
+
+const Styles = {
+    cell: {
+        borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
+        borderTop: '1px solid rgba(34, 36, 38, 0.1)',
+        padding: 5
+    },
+    headerCell: {
+        lineHeight: '40px' 
+    }
+};

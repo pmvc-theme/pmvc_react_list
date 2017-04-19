@@ -1,7 +1,5 @@
 import React, {Component} from 'react'; 
-import {
-    SemanticUI
-} from 'react-atomic-molecule';
+import { SemanticUI } from 'react-atomic-molecule';
 export default class SimpleBody extends Component
 {
     render()
