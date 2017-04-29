@@ -52,12 +52,16 @@ const  RVHeader = (props) =>
                 } else {
                   jsx = header;
                 }
+                let thisStyle = {
+                    ...Styles.headerCell,
+                    ...style
+                };
+                if (!columnIndex) {
+                    thisStyle.borderRadius = '.28571429rem 0 0';
+                }
                 return (
                     <SemanticUI
-                        style={{
-                            ...Styles.headerCell,
-                            ...style
-                        }}
+                        style={thisStyle}
                     >{jsx}</SemanticUI>
                 );
             }}
@@ -116,6 +120,11 @@ const Styles = {
         padding: 5
     },
     headerCell: {
-        lineHeight: '40px' 
+        borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
+        borderTop: '1px solid rgba(34, 36, 38, 0.1)',
+        padding: 5,
+        whiteSpace: 'nowrap',
+        lineHeight: '30px',
+        background: '#f9fafb'
     }
 };

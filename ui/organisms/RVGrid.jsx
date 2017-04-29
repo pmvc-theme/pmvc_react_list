@@ -38,7 +38,8 @@ const RVGrid = (props) =>
         {...props}
         style={{
             ...props.style,
-            position:'relative'
+            position:'relative',
+            outline: 'none'
         }}
       />
     );  
