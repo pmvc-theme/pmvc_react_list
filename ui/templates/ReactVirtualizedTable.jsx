@@ -1,7 +1,5 @@
 import React from 'react'; 
-import {
-   SemanticUI 
-} from 'react-atomic-molecule';
+import { SemanticUI } from 'react-atomic-molecule';
 import {ScrollSync, AutoSizer} from 'react-virtualized'; 
 
 import {RVHeader, RVBody} from '../organisms/react_virtualized';
@@ -10,7 +8,7 @@ const ReactVirtualizedTable = (props) =>
 <ScrollSync>
     {({ clientHeight, clientWidth, onScroll, scrollHeight, scrollLeft, scrollTop, scrollWidth }) => {
         return (
-            <AutoSizer>
+            <AutoSizer disableHeight={true}>
                 {({width})=>
                     <SemanticUI>
                         <RVHeader {...props} 
