@@ -6,6 +6,19 @@
 # PMVC React List theme 
 ===============
 
+## Simple usage
+```
+    <Table rows={rows}>
+        <Column
+            header={<Cell>Count</Cell>}
+            cell={({rowIndex, ...others})=>
+                <Cell></Cell>
+            }
+        />  
+    </Table>
+```
+
+
 ## Install with Composer
 ### 1. Download composer
    * mkdir test_folder
