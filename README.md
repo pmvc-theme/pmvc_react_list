@@ -3,8 +3,8 @@
 [![License](https://poser.pugx.org/pmvc-theme/pmvc_react_list/license)](https://packagist.org/packages/pmvc-theme/pmvc_react_list)
 [![Total Downloads](https://poser.pugx.org/pmvc-theme/pmvc_react_list/downloads)](https://packagist.org/packages/pmvc-theme/pmvc_react_list) 
 
-# PMVC React List theme 
-===============
+PMVC React List theme 
+===
 
 ## Simple usage
 ```
