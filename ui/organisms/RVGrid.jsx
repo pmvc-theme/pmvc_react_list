@@ -10,12 +10,16 @@ const RVGrid = (props) =>
         rows = props.rowsLocator(props.rows);
     }
     if (rows && rows[0]) {
-        React.Children.forEach(props.children, (child, key)=>{
-            if (!child) {
-                return;
-            }
-            colCount++;
-        });
+        if (props.children) {
+            React.Children.forEach(props.children, (child, key)=>{
+                if (!child) {
+                    return;
+                }
+                colCount++;
+            });
+        } else {
+            colCount = rows[0].length;
+        }
         rowCount = rows.length;
     } else {
         return null;
