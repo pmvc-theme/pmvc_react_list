@@ -18,10 +18,10 @@ export default class SimpleBody extends Component
         for (let i = 0, len = rowsCount; i < len; i++) {
             let jsx;
             if (React.isValidElement(tr)) {
-                jsx = cloneElement(tr, {rowIndex: i}, this.renderTD(i));
+                jsx = cloneElement(tr, {rowIndex: i, key: i}, this.renderTD(i));
             } else {
                 if (typeof tr === 'function') { 
-                    jsx = tr({rowIndex: i, children: this.renderTD(i)});
+                    jsx = tr({rowIndex: i, key: i, children: this.renderTD(i)});
                 }
                 if (!React.isValidElement(jsx)) {
                     jsx = createElement(
