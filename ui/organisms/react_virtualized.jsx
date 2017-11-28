@@ -25,6 +25,19 @@ const getChildren = (props) =>
     return children;
 }
 
+const getCell = (cell, props) =>
+{
+    let jsx;
+    if (React.isValidElement(cell)) {
+        jsx = cloneElement(cell, props);
+    } else if (typeof cell === 'function') {
+        jsx = cell(props);
+    } else {
+        jsx = cell;
+    }
+    return jsx;
+}
+
 const RVHeader = ({tr, ...props}) =>
 {
     
@@ -43,17 +56,11 @@ const RVHeader = ({tr, ...props}) =>
                 const key = rowIndex+'-'+columnIndex;
                 const cellProps = {
                     key,
-                    columnIndex: columnIndex,
+                    columnIndex,
+                    style: Styles.inner
                 };
-                let jsx;
-                if (React.isValidElement(header)) {
-                  jsx = cloneElement(header, cellProps);
-                } else if (typeof header === 'function') {
-                  jsx = header(cellProps);
-                } else {
-                  jsx = header;
-                }
-                let thisStyle = {
+                const jsx = getCell(header, cellProps);
+                const thisStyle = {
                     ...Styles.headerCell,
                     ...style
                 };
@@ -104,18 +111,11 @@ const RVBody = ({tr, ...props}) =>
                 const key = rowIndex+'-'+columnIndex;
                 const cellProps = {
                     key,
-                    columnIndex: columnIndex,
-                    rowIndex: rowIndex,
-                    //isScrolling: isScrolling
+                    columnIndex,
+                    rowIndex,
+                    style: Styles.inner
                 };
-                let jsx;
-                if (React.isValidElement(cell)) {
-                  jsx = cloneElement(cell, cellProps);
-                } else if (typeof cell === 'function') {
-                  jsx = cell(cellProps);
-                } else {
-                  jsx = cell;
-                }
+                const jsx = getCell(cell, cellProps);
                 const thisTR = getTR(tr, rowIndex);
                 return (
                     <SemanticUI
@@ -139,15 +139,17 @@ const RVBody = ({tr, ...props}) =>
 export {RVHeader, RVBody};
 
 const Styles = {
+    inner: {
+        padding: 5,
+        height: '100%'
+    },
     cell: {
         borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
         borderTop: '1px solid rgba(34, 36, 38, 0.1)',
-        padding: 5
     },
     headerCell: {
         borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
         borderTop: '1px solid rgba(34, 36, 38, 0.1)',
-        padding: 5,
         whiteSpace: 'nowrap',
         lineHeight: '30px',
         background: '#f9fafb'
