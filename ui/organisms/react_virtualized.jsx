@@ -39,9 +39,10 @@ const  RVHeader = (props) =>
                     return null;
                 }
                 let header = children[columnIndex].props.header;
+                const key = rowIndex+'-'+columnIndex;
                 cellProps = {
                     ...cellProps,
-                    key: rowIndex+'-'+columnIndex,
+                    key,
                     columnIndex: columnIndex,
                 };
                 let jsx;
@@ -61,6 +62,7 @@ const  RVHeader = (props) =>
                 }
                 return (
                     <SemanticUI
+                        key={key}
                         style={thisStyle}
                     >{jsx}</SemanticUI>
                 );
@@ -81,10 +83,11 @@ const RVBody = (props) =>
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
-                let cell = children[columnIndex].props.cell;
+                const cell = children[columnIndex].props.cell;
+                const key = rowIndex+'-'+columnIndex;
                 cellProps = {
                     ...cellProps,
-                    key: rowIndex+'-'+columnIndex,
+                    key,
                     columnIndex: columnIndex,
                     rowIndex: rowIndex,
                     //isScrolling: isScrolling
@@ -103,7 +106,10 @@ const RVBody = (props) =>
                             ...Styles.cell,
                             ...style
                         }}
-                    >{jsx}</SemanticUI>
+                        key={key}
+                    >
+                        {jsx}
+                    </SemanticUI>
                 );
             }}
             style={{overflow:'auto'}}
