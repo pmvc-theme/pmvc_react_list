@@ -35,6 +35,7 @@ const RVGrid = (props) =>
         columnWidth={({index})=>{
             return props.getColWidth(index,props);
         }}
+        //https://github.com/bvaughn/react-virtualized/blob/656033edec3e33c89a468643ca861625fc5ade6f/source/Grid/types.js#L8-L16
         cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
             let row = props.rowLocator(rowIndex,rows);
             return props.colLocator(columnIndex,row);

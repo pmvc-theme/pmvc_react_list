@@ -35,14 +35,13 @@ const RVHeader = ({tr, ...props}) =>
             height={props.headerHeight}
             rowHeight={props.headerHeight}
             rowCount={1}
-            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, style, ...cellProps}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, style, parent}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
                 let header = children[columnIndex].props.header;
                 const key = rowIndex+'-'+columnIndex;
-                cellProps = {
-                    ...cellProps,
+                const cellProps = {
                     key,
                     columnIndex: columnIndex,
                 };
@@ -65,7 +64,9 @@ const RVHeader = ({tr, ...props}) =>
                     <SemanticUI
                         key={key}
                         style={thisStyle}
-                    >{jsx}</SemanticUI>
+                    >
+                        {jsx}
+                    </SemanticUI>
                 );
             }}
             style={{overflow:'hidden'}}
@@ -88,20 +89,20 @@ const getTR = (tr, rowIndex) =>
     return jsx;
 }   
 
+// https://github.com/bvaughn/react-virtualized/blob/656033edec3e33c89a468643ca861625fc5ade6f/source/Grid/types.js#L8-L16
 const RVBody = ({tr, ...props}) =>
 {
     let children = getChildren(props); 
     return (
         <RVGrid 
             {...props}
-            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, parent, style, ...cellProps}) => {
+            cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, style, parent}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
                 const cell = children[columnIndex].props.cell;
                 const key = rowIndex+'-'+columnIndex;
-                cellProps = {
-                    ...cellProps,
+                const cellProps = {
                     key,
                     columnIndex: columnIndex,
                     rowIndex: rowIndex,
@@ -123,7 +124,7 @@ const RVBody = ({tr, ...props}) =>
                             ...Styles.cell,
                             ...style,
                         }}
-                        className={get(thisTR, ['props', 'className'])}
+                        className={ get(thisTR, ['props', 'className']) }
                         key={key}
                     >
                         {jsx}
