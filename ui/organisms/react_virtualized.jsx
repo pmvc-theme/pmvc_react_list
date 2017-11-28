@@ -1,5 +1,6 @@
 import React, {Children, cloneElement} from 'react'; 
 import { SemanticUI } from 'react-atomic-molecule';
+import get from 'get-object-value';
 
 import RVGrid from '../organisms/RVGrid';
 
@@ -24,7 +25,7 @@ const getChildren = (props) =>
     return children;
 }
 
-const  RVHeader = (props) =>
+const RVHeader = ({tr, ...props}) =>
 {
     
     let children = getChildren(props); 
@@ -72,8 +73,22 @@ const  RVHeader = (props) =>
     );
 }
 
+const getTR = (tr, rowIndex) =>
+{
+    let jsx;
+    if (React.isValidElement(tr)) {
+        jsx = cloneElement(tr, {rowIndex});
+    } else {
+        if (typeof tr === 'function') { 
+            jsx = tr({rowIndex});
+        } else {
+            jsx = tr;
+        }
+    }
+    return jsx;
+}   
 
-const RVBody = (props) =>
+const RVBody = ({tr, ...props}) =>
 {
     let children = getChildren(props); 
     return (
@@ -100,12 +115,15 @@ const RVBody = (props) =>
                 } else {
                   jsx = cell;
                 }
+                const thisTR = getTR(tr, rowIndex);
                 return (
                     <SemanticUI
                         style={{
+                            ...get(thisTR, ['props', 'style'], []),
                             ...Styles.cell,
-                            ...style
+                            ...style,
                         }}
+                        className={get(thisTR, ['props', 'className'])}
                         key={key}
                     >
                         {jsx}

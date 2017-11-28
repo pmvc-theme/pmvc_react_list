@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "pmvc list template",
   "main": "./build/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
@@ -26,9 +26,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "fixed-data-table": "*",
-    "react": "^15.0.1",
-    "react-addons-shallow-compare": "^15.0.1",
-    "react-dom": "^15.0.1",
+    "react": "^16.x",
+    "react-dom": "^16.x",
     "react-virtualized": "*",
     "webpack": "^1.13.0"
   },
