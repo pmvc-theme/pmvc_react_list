@@ -1,11 +1,9 @@
 #!/bin/sh
 find ./assets -name "*.js" | xargs rm -rf
 
-phpc=`DUMP=cli php -r "include('config/config.php');"`
-
 production(){
     echo "Production Mode";
-    NODE_ENV=production PHP_CONFIG=$phpc webpack -p 
+    NODE_ENV=production webpack -p 
     NODE_ENV=production webpack -p --config webpack.node.js
 }
 
