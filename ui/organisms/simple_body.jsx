@@ -45,9 +45,8 @@ export default class SimpleBody extends Component
         let props;
         let children = this.props.children; 
         let cell;
-        let jsx;
         React.Children.forEach(children, (child, key)=>{
-            jsx = null;
+            let jsx;
             if (!child) {
                 return;
             }
