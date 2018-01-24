@@ -10,7 +10,8 @@ export default class SimpleTable extends Component
 {
     render()
     {
-        let classes = mixClass (
+        const {className, style} = this.props;
+        const classes = mixClass (
             this.props.className,
             {
                 single: this.props.singleLine,
@@ -20,7 +21,7 @@ export default class SimpleTable extends Component
             'table'
         );
         return (
-            <SemanticUI atom="table" className={classes}>
+            <SemanticUI atom="table" className={classes} style={style}>
                 <SimpleHeader {...this.props}/>
                 <SimpleBody {...this.props}/>
             </SemanticUI>
