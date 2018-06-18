@@ -1,17 +1,27 @@
-import React from 'react'; 
+import React, {isValidElement, cloneElement} from 'react'; 
 import {Grid} from 'react-virtualized'; 
 
-const RVGrid = (props) =>
+/**
+ * Source 
+ * https://github.com/bvaughn/react-virtualized/blob/master/source/Grid/Grid.js
+ *
+ * Readme
+ * https://github.com/bvaughn/react-virtualized/blob/master/docs/Grid.md
+ *
+ */
+
+const RVGrid = props =>
 {
-    let rows = props.rows;
+    const {rowsLocator, getRowHeight, getColWidth, children, style, rowLocator, colLocator} = props;
+    let {rows} = props;
     let rowCount = 0;
     let colCount = 0;
-    if (props.rowsLocator) {
-        rows = props.rowsLocator(props.rows);
+    if (rowsLocator) {
+        rows = rowsLocator(rows);
     }
     if (rows && rows[0]) {
-        if (props.children) {
-            React.Children.forEach(props.children, (child, key)=>{
+        if (children) {
+            React.Children.forEach(children, (child, key)=>{
                 if (!child) {
                     return;
                 }
@@ -26,23 +36,30 @@ const RVGrid = (props) =>
     }
     return (
       <Grid
-        rowHeight={({index})=>{
-            return props.getRowHeight(index,props);
-        }}
+        rowHeight={({index})=>getRowHeight(index,props)}
         rowCount={rowCount}
         overscanRowCount={0}
         columnCount={colCount}
-        columnWidth={({index})=>{
-            return props.getColWidth(index,props);
-        }}
-        //https://github.com/bvaughn/react-virtualized/blob/656033edec3e33c89a468643ca861625fc5ade6f/source/Grid/types.js#L8-L16
-        cellRenderer={({columnIndex, rowIndex, isScrolling}) => {
-            let row = props.rowLocator(rowIndex,rows);
-            return props.colLocator(columnIndex,row);
+        columnWidth={({index})=>getColWidth(index,props)}
+        cellRenderer={ cellProps => {
+            const {
+                columnIndex,
+                rowIndex
+            } = cellProps
+            const row = rowLocator(rowIndex, rows)
+            let cell = colLocator(columnIndex, row)
+            if (!isValidElement(cell)) {
+                return cell
+            } else {
+                return cloneElement(
+                    cell,
+                    cellProps
+                )
+            }
         }}
         {...props}
         style={{
-            ...props.style,
+            ...style,
             position:'relative',
             outline: 'none'
         }}
