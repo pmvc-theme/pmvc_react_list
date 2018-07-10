@@ -38,7 +38,7 @@ const getCell = (cell, props) =>
     return jsx;
 }
 
-const RVHeader = ({tr, ...props}) =>
+const RVHeader = ({getCellStyle, tr, ...props}) =>
 {
     
     let children = getChildren(props); 
@@ -58,17 +58,17 @@ const RVHeader = ({tr, ...props}) =>
                     style: Styles.inner
                 };
                 const jsx = getCell(header, cellProps);
-                const thisStyle = {
+                const cellStyle = {
                     ...Styles.headerCell,
                     ...style
                 };
                 if (!columnIndex) {
-                    thisStyle.borderRadius = '.28571429rem 0 0';
+                    cellStyle.borderRadius = '.28571429rem 0 0';
                 }
                 return (
                     <SemanticUI
                         key={key}
-                        style={thisStyle}
+                        style={getCellStyle(cellStyle, rowIndex, columnIndex)}
                     >
                         {jsx}
                     </SemanticUI>
@@ -95,7 +95,7 @@ const getTR = (tr, rowIndex) =>
 }   
 
 // https://github.com/bvaughn/react-virtualized/blob/656033edec3e33c89a468643ca861625fc5ade6f/source/Grid/types.js#L8-L16
-const RVBody = ({tr, ...props}) =>
+const RVBody = ({getCellStyle, tr, ...props}) =>
 {
     let children = getChildren(props); 
     return (
@@ -115,13 +115,14 @@ const RVBody = ({tr, ...props}) =>
                 };
                 const jsx = getCell(cell, cellProps);
                 const thisTR = getTR(tr, rowIndex);
+                const cellStyle = {
+                    ...get(thisTR, ['props', 'style'], []),
+                    ...Styles.cell,
+                    ...style,
+                }
                 return (
                     <SemanticUI
-                        style={{
-                            ...get(thisTR, ['props', 'style'], []),
-                            ...Styles.cell,
-                            ...style,
-                        }}
+                        style={getCellStyle(cellStyle, rowIndex, columnIndex)}
                         className={ get(thisTR, ['props', 'className']) }
                         key={key}
                     >
@@ -138,14 +139,15 @@ export {RVHeader, RVBody};
 
 const Styles = {
     inner: {
-        padding: 5,
         height: '100%'
     },
     cell: {
+        padding: 5,
         borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
         borderTop: '1px solid rgba(34, 36, 38, 0.1)',
     },
     headerCell: {
+        padding: 5,
         borderLeft: '1px solid rgba(34, 36, 38, 0.1)',
         borderTop: '1px solid rgba(34, 36, 38, 0.1)',
         whiteSpace: 'nowrap',

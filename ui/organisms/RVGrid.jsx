@@ -1,5 +1,6 @@
 import React, {isValidElement, cloneElement} from 'react'; 
 import {Grid} from 'react-virtualized'; 
+import {SemanticUI} from 'react-atomic-molecule'
 
 /**
  * Source 
@@ -12,7 +13,7 @@ import {Grid} from 'react-virtualized';
 
 const RVGrid = props =>
 {
-    const {rowsLocator, getRowHeight, getColWidth, children, style, rowLocator, colLocator} = props;
+    const {rowsLocator, getCellStyle, getRowHeight, getColWidth, children, style, rowLocator, colLocator} = props;
     let {rows} = props;
     let rowCount = 0;
     let colCount = 0;
@@ -43,13 +44,14 @@ const RVGrid = props =>
         columnWidth={({index})=>getColWidth(index,props)}
         cellRenderer={ cellProps => {
             const {
+                rowIndex,
                 columnIndex,
-                rowIndex
             } = cellProps
             const row = rowLocator(rowIndex, rows)
-            let cell = colLocator(columnIndex, row)
+            const cell = colLocator(columnIndex, row)
+            cellProps.style = getCellStyle(cellProps.style, rowIndex, columnIndex)
             if (!isValidElement(cell)) {
-                return cell
+                return <SemanticUI {...cellProps}>{cell}</SemanticUI>
             } else {
                 return cloneElement(
                     cell,
@@ -78,6 +80,7 @@ RVGrid.defaultProps = {
     colLocator: (index, row)=>{
         return row[index];
     },
+    getCellStyle: (orgStyles, rowIndex, colIndex) => orgStyles,
     getRowHeight: (index, props)=>{
         return 40;
     },

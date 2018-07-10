@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import {Table, Column, Cell} from 'fixed-data-table'; 
+import {Table, Column, Cell} from 'fixed-data-table-2'; 
 
 export default class List extends Component
 {
