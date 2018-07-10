@@ -45,8 +45,6 @@ const RVHeader = ({tr, ...props}) =>
     return (
         <RVGrid 
             {...props}
-            height={props.headerHeight}
-            rowHeight={props.headerHeight}
             rowCount={1}
             cellRenderer={({columnIndex, rowIndex, isScrolling, isVisible, style, parent}) => {
                 if (!children.hasOwnProperty(columnIndex)) {
