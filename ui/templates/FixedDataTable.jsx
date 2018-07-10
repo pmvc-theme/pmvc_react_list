@@ -1,7 +1,7 @@
-import React, {Component} from 'react'; 
+import React, {PureComponent} from 'react'; 
 import {Table, Column, Cell} from 'fixed-data-table-2'; 
 
-export default class List extends Component
+class List extends PureComponent
 {
     constructor(props)
     {
@@ -97,3 +97,5 @@ export default class List extends Component
     }));
   }
 }
+
+export default List

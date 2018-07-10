@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "pmvc list template",
   "main": "./build/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",

@@ -46,12 +46,14 @@ const RVGrid = props =>
             const {
                 rowIndex,
                 columnIndex,
+                key,
+                style,
             } = cellProps
             const row = rowLocator(rowIndex, rows)
             const cell = colLocator(columnIndex, row)
             cellProps.style = getCellStyle(cellProps.style, rowIndex, columnIndex)
             if (!isValidElement(cell)) {
-                return <SemanticUI {...cellProps}>{cell}</SemanticUI>
+                return <SemanticUI key={key} style={style}>{cell}</SemanticUI>
             } else {
                 return cloneElement(
                     cell,
