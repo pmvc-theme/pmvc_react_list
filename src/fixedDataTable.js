@@ -1,1 +1,1 @@
-export FixedDataTable from 'build/ui/templates/FixedDataTable';
+export { default } from 'build/ui/templates/FixedDataTable';
