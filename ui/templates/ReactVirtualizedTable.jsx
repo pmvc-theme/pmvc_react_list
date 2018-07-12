@@ -25,7 +25,6 @@ const ReactVirtualizedTable = ({
                     columnCount={Children.count(props.children)}
                 >
                 { ({adjustedWidth, columnWidth, registerChild}) => {
-                    console.log(height, headerHeight);
                     return (
                     <SemanticUI style={{...style, width, height}}>
                         <RVHeader {...props}
