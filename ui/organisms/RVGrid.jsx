@@ -13,7 +13,7 @@ import {SemanticUI} from 'react-atomic-molecule'
 
 const RVGrid = props =>
 {
-    const {rowsLocator, getCellStyle, getRowHeight, getColWidth, children, style, rowLocator, colLocator} = props;
+    const {registerChild, rowsLocator, getCellStyle, getRowHeight, getColWidth, children, style, rowLocator, colLocator} = props;
     let {rows} = props;
     let rowCount = 0;
     let colCount = 0;
@@ -62,6 +62,7 @@ const RVGrid = props =>
             }
         }}
         {...props}
+        ref={registerChild}
         style={{
             ...style,
             position:'relative',

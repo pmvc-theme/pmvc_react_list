@@ -1,15 +1,15 @@
-import React from 'react'; 
+import React,{Children} from 'react'; 
 import { SemanticUI } from 'react-atomic-molecule';
-import {ScrollSync, AutoSizer} from 'react-virtualized'; 
+import {ScrollSync, AutoSizer, ColumnSizer} from 'react-virtualized'; 
 
 import {RVHeader, RVBody} from '../organisms/react_virtualized';
 
 const ReactVirtualizedTable = ({
     style,
-    height,
     headerHeight,
     getHeaderCellStyle,
     getBodyCellStyle,
+    getColWidth,
     ...props
 }) =>
 <ScrollSync>
@@ -18,23 +18,36 @@ const ReactVirtualizedTable = ({
             style = Styles.container
         }
         return (
-            <AutoSizer disableHeight={true} style={style}>
-                {({width})=>
-                    <SemanticUI>
+            <AutoSizer>
+                { ({width, height}) =>
+                <ColumnSizer 
+                    width={width}
+                    columnCount={Children.count(props.children)}
+                >
+                { ({adjustedWidth, columnWidth, registerChild}) => {
+                    console.log(height, headerHeight);
+                    return (
+                    <SemanticUI style={{...style, width, height}}>
                         <RVHeader {...props}
                             height={headerHeight}
                             rowHeight={headerHeight}
                             scrollLeft={scrollLeft}
-                            width={width}
+                            width={adjustedWidth}
                             getCellStyle={getHeaderCellStyle}
+                            getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
                         />
                         <RVBody {...props}
+                            registerChild={registerChild}
                             height={height-headerHeight}
                             onScroll={onScroll}
-                            width={width}
+                            width={adjustedWidth}
                             getCellStyle={getBodyCellStyle}
+                            getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
                         />
                     </SemanticUI>
+                    )
+                }}
+                </ColumnSizer>
                 }
             </AutoSizer>
         )
