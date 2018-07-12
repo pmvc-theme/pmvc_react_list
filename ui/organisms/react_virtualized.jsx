@@ -55,7 +55,6 @@ const RVHeader = ({getCellStyle, tr, ...props}) =>
                 const cellProps = {
                     key,
                     columnIndex,
-                    rowIndex,
                     style: Styles.inner
                 };
                 const jsx = getCell(header, cellProps);

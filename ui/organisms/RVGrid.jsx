@@ -41,7 +41,7 @@ const RVGrid = props =>
         rowCount={rowCount}
         overscanRowCount={0}
         columnCount={colCount}
-        columnWidth={({index})=>getColWidth(index,props)}
+        columnWidth={({index})=>getColWidth(index, props)}
         cellRenderer={ cellProps => {
             const {
                 rowIndex,

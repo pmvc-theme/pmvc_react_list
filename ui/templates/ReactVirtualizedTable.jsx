@@ -34,6 +34,7 @@ const ReactVirtualizedTable = ({
                             width={adjustedWidth}
                             getCellStyle={getHeaderCellStyle}
                             getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
+                            avgColWidth={columnWidth}
                         />
                         <RVBody {...props}
                             registerChild={registerChild}
@@ -42,6 +43,7 @@ const ReactVirtualizedTable = ({
                             width={adjustedWidth}
                             getCellStyle={getBodyCellStyle}
                             getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
+                            avgColWidth={columnWidth}
                         />
                     </SemanticUI>
                     )
