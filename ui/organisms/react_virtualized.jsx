@@ -38,10 +38,24 @@ const getCell = (cell, props) =>
     return jsx;
 }
 
+const getTR = (tr, rowIndex) =>
+{
+    let jsx;
+    if (React.isValidElement(tr)) {
+        jsx = cloneElement(tr, {rowIndex});
+    } else {
+        if (typeof tr === 'function') { 
+            jsx = tr({rowIndex});
+        } else {
+            jsx = tr;
+        }
+    }
+    return jsx;
+}   
+
 const RVHeader = ({getCellStyle, tr, ...props}) =>
 {
-    
-    let children = getChildren(props); 
+    const children = getChildren(props); 
     return (
         <RVGrid 
             {...props}
@@ -50,18 +64,19 @@ const RVHeader = ({getCellStyle, tr, ...props}) =>
                 if (!children.hasOwnProperty(columnIndex)) {
                     return null;
                 }
-                let header = children[columnIndex].props.header;
+                const header = children[columnIndex].props.header;
                 const key = rowIndex+'-'+columnIndex;
                 const cellProps = {
                     key,
                     columnIndex,
+                    rowIndex,
                     style: Styles.inner
                 };
-                const jsx = getCell(header, cellProps);
                 const cellStyle = {
                     ...Styles.headerCell,
                     ...style
                 };
+                const jsx = getCell(header, cellProps, cellStyle);
                 if (!columnIndex) {
                     cellStyle.borderRadius = '.28571429rem 0 0';
                 }
@@ -79,20 +94,6 @@ const RVHeader = ({getCellStyle, tr, ...props}) =>
     );
 }
 
-const getTR = (tr, rowIndex) =>
-{
-    let jsx;
-    if (React.isValidElement(tr)) {
-        jsx = cloneElement(tr, {rowIndex});
-    } else {
-        if (typeof tr === 'function') { 
-            jsx = tr({rowIndex});
-        } else {
-            jsx = tr;
-        }
-    }
-    return jsx;
-}   
 
 // https://github.com/bvaughn/react-virtualized/blob/656033edec3e33c89a468643ca861625fc5ade6f/source/Grid/types.js#L8-L16
 const RVBody = ({getCellStyle, tr, ...props}) =>

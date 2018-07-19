@@ -19,15 +19,15 @@ const ReactVirtualizedTable = ({
         }
         return (
             <AutoSizer>
-                { ({width, height}) =>
-                <ColumnSizer 
-                    width={width}
-                    columnCount={Children.count(props.children)}
-                >
-                { ({adjustedWidth, columnWidth, registerChild}) => {
-                    return (
-                    <SemanticUI style={{...style, width, height}}>
+            { ({width, height}) =>
+                <SemanticUI style={{...style, width, height}}>
+                    <ColumnSizer 
+                        width={width}
+                        columnCount={Children.count(props.children)}
+                    >
+                    { ({adjustedWidth, columnWidth, registerChild}) =>
                         <RVHeader {...props}
+                            registerChild={registerChild}
                             height={headerHeight}
                             rowHeight={headerHeight}
                             scrollLeft={scrollLeft}
@@ -36,20 +36,26 @@ const ReactVirtualizedTable = ({
                             getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
                             avgColWidth={columnWidth}
                         />
+                    }
+                    </ColumnSizer>
+                    <ColumnSizer 
+                        width={width}
+                        columnCount={Children.count(props.children)}
+                    >
+                    { ({adjustedWidth, columnWidth, registerChild}) =>
                         <RVBody {...props}
                             registerChild={registerChild}
-                            height={height-headerHeight}
                             onScroll={onScroll}
+                            height={ height - headerHeight}
                             width={adjustedWidth}
                             getCellStyle={getBodyCellStyle}
                             getColWidth={getColWidth ? getColWidth : ()=>columnWidth}
                             avgColWidth={columnWidth}
                         />
-                    </SemanticUI>
-                    )
-                }}
-                </ColumnSizer>
-                }
+                    }
+                    </ColumnSizer>
+                </SemanticUI>
+            }
             </AutoSizer>
         )
     }}
