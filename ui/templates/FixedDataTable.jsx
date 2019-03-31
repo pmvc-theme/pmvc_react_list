@@ -70,7 +70,6 @@ class List extends PureComponent {
     } else {
       rows = props.rows;
     }
-    console.log(state, props);
     return (
       <Table
         rowHeight={100}
