@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "pmvc list template",
   "main": "./build/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
@@ -15,21 +15,11 @@
     "react-atomic-molecule": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.5",
-    "babel-loader": "^6.2.5",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-react-constant-elements": "^6.9.1",
-    "babel-plugin-transform-react-inline-elements": "^6.8.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
     "fixed-data-table-2": "*",
+    "react-virtualized": "*",
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-virtualized": "*",
-    "webpack": "^1.13.0"
+    "reshow-app": "*"
   },
   "scripts": {
     "build": "./compile.sh build",
