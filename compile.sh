@@ -16,10 +16,12 @@ develop(){
 
 build(){
     rm -rf build
-    BABEL_ENV=build babel ui -d build/ui
-    BABEL_ENV=build babel src -d build/src
-    mv build/src/rv.js ./
-    mv build/src/fixedDataTable.js ./
+    BABEL_ENV=test babel ui -d build/cjs/ui
+    BABEL_ENV=test babel src -d build/cjs/src
+    mv build/cjs/src/rv.js ./
+    mv build/cjs/src/fixedDataTable.js ./
+    BABEL_ENV=build babel ui -d build/es/ui
+    BABEL_ENV=build babel src -d build/es/src
 }
 
 case "$1" in

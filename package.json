@@ -1,8 +1,9 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "pmvc list template",
-  "main": "./build/src/index.js",
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.js",
   "repository": "pmvc-theme/pmvc_react_list",
   "keywords": [
     "react",
@@ -16,9 +17,9 @@
   },
   "devDependencies": {
     "fixed-data-table-2": "*",
-    "react-virtualized": "*",
     "react": "^16.x",
     "react-dom": "^16.x",
+    "react-virtualized": "*",
     "reshow-app": "*"
   },
   "scripts": {
