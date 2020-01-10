@@ -1,1 +1,1 @@
-export { default } from './build/ui/templates/FixedDataTable';
+export { default } from './build/cjs/ui/templates/FixedDataTable';

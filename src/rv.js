@@ -1,2 +1,2 @@
-export { default } from './build/ui/templates/ReactVirtualizedTable';
-export { default as RVGrid } from './build/ui/organisms/RVGrid';
+export { default } from './build/cjs/ui/templates/ReactVirtualizedTable';
+export { default as RVGrid } from './build/cjs/ui/organisms/RVGrid';
