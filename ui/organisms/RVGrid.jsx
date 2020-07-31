@@ -6,6 +6,8 @@ const defaultCellRenderer = ({
   rowLocator,
   colLocator,
   getCellStyle,
+  cellRenderer,
+  cache,
   rows
 }) => (cellProps) => {
   const {
@@ -18,14 +20,33 @@ const defaultCellRenderer = ({
     parent,
     ...otherCellProps
   } = cellProps;
-  const row = rowLocator(rowIndex, rows);
-  const cell = colLocator(columnIndex, row);
-  otherCellProps.style = getCellStyle(style, rowIndex, columnIndex);
-  return build(cell, { wrap: SemanticUI })({
-    key,
-    "data-is-scrolling": isScrolling,
-    ...otherCellProps
-  });
+  const comp = cellRenderer
+    ? cellRenderer(cellProps)
+    : (() => {
+        const row = rowLocator(rowIndex, rows);
+        const cell = colLocator(columnIndex, row);
+        otherCellProps.style = getCellStyle(style, rowIndex, columnIndex);
+        return build(cell, { wrap: SemanticUI })({
+          key,
+          "data-is-scrolling": isScrolling,
+          ...otherCellProps
+        });
+      })();
+  return cache
+    ? (() => {
+        return (
+          <CellMeasurer
+            cache={cache}
+            columnIndex={columnIndex}
+            key={key}
+            parent={parent}
+            rowIndex={rowIndex}
+          >
+            {comp}
+          </CellMeasurer>
+        );
+      })()
+    : comp;
 };
 
 /**
@@ -45,8 +66,10 @@ const RVGrid = (props) => {
     getColWidth,
     children,
     style,
+    cellRenderer,
     rowLocator,
-    colLocator
+    colLocator,
+    measurerCacheProps
   } = props;
   let rowCount = 0;
   let colCount = 0;
@@ -66,7 +89,10 @@ const RVGrid = (props) => {
   } else {
     return null;
   }
-  const cellRenderer = defaultCellRenderer({
+  const cache = new CellMeasurerCache(measurerCacheProps) || null;
+  const thisCellRenderer = defaultCellRenderer({
+    cache,
+    cellRenderer,
     rowLocator,
     colLocator,
     getCellStyle,
@@ -86,7 +112,7 @@ const RVGrid = (props) => {
       overscanRowCount={0}
       columnCount={colCount}
       columnWidth={columnWidth}
-      cellRenderer={cellRenderer}
+      cellRenderer={thisCellRenderer}
       {...props}
       ref={registerChild}
       style={thisStyle}
