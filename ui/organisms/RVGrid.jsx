@@ -89,7 +89,7 @@ const RVGrid = (props) => {
   } else {
     return null;
   }
-  const cache = new CellMeasurerCache(measurerCacheProps) || null;
+  const cache = measurerCacheProps ? new CellMeasurerCache(measurerCacheProps) : null;
   const thisCellRenderer = defaultCellRenderer({
     cache,
     cellRenderer,
