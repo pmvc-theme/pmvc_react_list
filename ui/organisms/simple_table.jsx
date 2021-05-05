@@ -1,31 +1,38 @@
-import React, {Component} from 'react'; 
-import SimpleHeader from './simple_header'; 
-import SimpleBody from './simple_body'; 
-import { 
-    mixClass,
-    SemanticUI
-} from 'react-atomic-molecule'; 
+import React from "react";
+import SimpleHeader from "./simple_header";
+import SimpleBody from "./simple_body";
+import { mixClass, SemanticUI } from "react-atomic-molecule";
 
-export default class SimpleTable extends Component
-{
-    render()
+const SimpleTable = (props) => {
+  const { className, style, singleLine, disableWrapper, ...otherProps } = props;
+  const classes = mixClass(
+    className,
     {
-        const {className, style} = this.props;
-        const classes = mixClass (
-            this.props.className,
-            {
-                single: this.props.singleLine,
-                line: this.props.singleLine
-            },
-            'celled',
-            'table'
-        );
-        return (
-            <SemanticUI atom="table" className={classes} style={style}>
-                <SimpleHeader {...this.props}/>
-                <SimpleBody {...this.props}/>
-            </SemanticUI>
-        );
-    }
-}
+      single: singleLine,
+      line: singleLine,
+    },
+    "celled",
+    "table"
+  );
+  const Table = (
+    <SemanticUI atom="table" className={classes} style={style}>
+      <SimpleHeader {...otherProps} />
+      <SimpleBody {...otherProps} />
+    </SemanticUI>
+  );
+
+  return disableWrapper ? Table : (
+    <SemanticUI className="table-wrap" style={Styles.tableWrap}>{Table}</SemanticUI>
+  );
+};
+
 SimpleTable.defaultProps = { singleLine: false };
+
+export default SimpleTable;
+
+const Styles = {
+  tableWrap: {
+    maxWidth: "100%",
+    overflow: "auto",
+  },
+};

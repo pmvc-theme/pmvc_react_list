@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { build, SemanticUI } from "react-atomic-molecule";
+import { build } from "react-atomic-molecule";
 import Cell from "../organisms/simple_cell";
 
 const SimpleBody = (props) => {
