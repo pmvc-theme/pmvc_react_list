@@ -1,7 +1,6 @@
-import React, {PureComponent, Children} from 'react';
-import {Table, Column, Cell} from 'fixed-data-table-2';
-
-const keys = Object.keys;
+import React, { PureComponent, Children } from "react";
+import { Table, Column, Cell } from "fixed-data-table-2";
+import needCSS from "need-css";
 
 class List extends PureComponent {
   static defaultProps = {
@@ -30,7 +29,7 @@ class List extends PureComponent {
   }
 
   _onColumnResizeEndCallback(newColumnWidth, columnKey) {
-    this.setState(({columnWidths}) => ({
+    this.setState(({ columnWidths }) => ({
       columnWidths: {
         ...columnWidths,
         [columnKey]: newColumnWidth,
@@ -39,10 +38,14 @@ class List extends PureComponent {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const {tableWidth, tableHeight} = nextProps;
-    if (tableWidth !== prevState.tableWidth && tableHeight !== prevState.tableHeight) {
+    const { tableWidth, tableHeight } = nextProps;
+    if (
+      tableWidth !== prevState.tableWidth &&
+      tableHeight !== prevState.tableHeight
+    ) {
       return {
-        tableWidth, tableHeight
+        tableWidth,
+        tableHeight,
       };
     } else {
       return null;
@@ -50,19 +53,20 @@ class List extends PureComponent {
   }
 
   componentDidMount() {
+    needCSS("fixed-data-table");
     this._update();
     const win = window;
     if (win.addEventListener) {
-      win.addEventListener('resize', this._onResize, false);
+      win.addEventListener("resize", this._onResize, false);
     } else if (win.attachEvent) {
-      win.attachEvent('onresize', this._onResize);
+      win.attachEvent("onresize", this._onResize);
     } else {
       win.onresize = this._onResize;
     }
   }
 
   render() {
-    const {tableWidth, tableHeight, ...state} = this.state;
+    const { tableWidth, tableHeight, ...state } = this.state;
     const props = this.props;
     let rows = null;
     if (props.rowsLocator) {
@@ -80,7 +84,8 @@ class List extends PureComponent {
         overflowY="auto"
         headerHeight={50}
         onColumnResizeEndCallback={this._onColumnResizeEndCallback.bind(this)}
-        isColumnResizing={false}>
+        isColumnResizing={false}
+      >
         {Children.map(props.children, (child, key) => {
           const colW = state.columnWidths[key] || props.defColWidth;
           return (
