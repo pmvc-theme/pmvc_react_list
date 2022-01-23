@@ -53,7 +53,7 @@ class List extends PureComponent {
   }
 
   componentDidMount() {
-    needCSS("fixed-data-table");
+    needCSS(["fixed-data-table"]);
     this._update();
     const win = window;
     if (win.addEventListener) {
