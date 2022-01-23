@@ -8,7 +8,7 @@ const defaultCellRenderer = ({
   getCellStyle,
   cellRenderer,
   cache,
-  rows
+  rows,
 }) => (cellProps) => {
   const {
     rowIndex,
@@ -29,7 +29,7 @@ const defaultCellRenderer = ({
         return build(cell, { wrap: SemanticUI })({
           key,
           "data-is-scrolling": isScrolling,
-          ...otherCellProps
+          ...otherCellProps,
         });
       })();
   return cache
@@ -69,7 +69,7 @@ const RVGrid = (props) => {
     cellRenderer,
     rowLocator,
     colLocator,
-    measurerCacheProps
+    measurerCacheProps,
   } = props;
   let rowCount = 0;
   let colCount = 0;
@@ -89,21 +89,23 @@ const RVGrid = (props) => {
   } else {
     return null;
   }
-  const cache = measurerCacheProps ? new CellMeasurerCache(measurerCacheProps) : null;
+  const cache = measurerCacheProps
+    ? new CellMeasurerCache(measurerCacheProps)
+    : null;
   const thisCellRenderer = defaultCellRenderer({
     cache,
     cellRenderer,
     rowLocator,
     colLocator,
     getCellStyle,
-    rows
+    rows,
   });
   const rowHeight = ({ index }) => getRowHeight(index, props);
   const columnWidth = ({ index }) => getColWidth(index, props);
   const thisStyle = {
     ...style,
     position: "relative",
-    outline: "none"
+    outline: "none",
   };
   return (
     <Grid
@@ -137,7 +139,7 @@ RVGrid.defaultProps = {
   },
   getColWidth: (index, props) => {
     return 100;
-  }
+  },
 };
 
 export default RVGrid;
