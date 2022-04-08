@@ -1,9 +1,9 @@
-import React, { Children } from "react";
+import { Children } from "react";
 import { build } from "react-atomic-molecule";
-import Cell from "../organisms/simple_cell";
+import Cell from "../organisms/Cell";
 
 const SimpleBody = (props) => {
-  const { tr, rowsCount, children } = props;
+  const { tr, rowCount, children } = props;
 
   const renderTD = (rowIndex) => {
     const arr = [];
@@ -27,7 +27,7 @@ const SimpleBody = (props) => {
 
   const renderTR = () => {
     const arr = [];
-    for (let i = 0, len = rowsCount; i < len; i++) {
+    for (let i = 0, len = rowCount; i < len; i++) {
       const jsx = build(tr || Cell, {
         doCallFunction: true,
       })(

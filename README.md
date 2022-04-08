@@ -1,7 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/pmvc-theme/pmvc_react_list/v/stable)](https://packagist.org/packages/pmvc-theme/pmvc_react_list) 
-[![Latest Unstable Version](https://poser.pugx.org/pmvc-theme/pmvc_react_list/v/unstable)](https://packagist.org/packages/pmvc-theme/pmvc_react_list) 
-[![License](https://poser.pugx.org/pmvc-theme/pmvc_react_list/license)](https://packagist.org/packages/pmvc-theme/pmvc_react_list)
-[![Total Downloads](https://poser.pugx.org/pmvc-theme/pmvc_react_list/downloads)](https://packagist.org/packages/pmvc-theme/pmvc_react_list) 
+[![CircleCI](https://circleci.com/gh/pmvc-theme/pmvc_react_list/tree/main.svg?style=svg)](https://circleci.com/gh/pmvc-theme/pmvc_react_list/tree/main)
 
 PMVC React List theme 
 ===

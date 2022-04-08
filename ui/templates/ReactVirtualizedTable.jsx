@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import { Children } from "react";
 import { SemanticUI } from "react-atomic-molecule";
 import { ScrollSync, AutoSizer, ColumnSizer } from "react-virtualized";
 

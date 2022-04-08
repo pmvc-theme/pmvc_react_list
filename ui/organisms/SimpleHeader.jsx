@@ -1,6 +1,6 @@
-import React, { Children } from "react";
+import { Children } from "react";
 import { build } from "react-atomic-molecule";
-import Cell from "../organisms/simple_cell";
+import Cell from "../organisms/Cell";
 
 const SimpleHeader = (props) => {
   const { children } = props;

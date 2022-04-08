@@ -1,4 +1,3 @@
-import React from "react";
 import { CellMeasurer, CellMeasurerCache, Grid } from "react-virtualized";
 import { build, SemanticUI } from "react-atomic-molecule";
 

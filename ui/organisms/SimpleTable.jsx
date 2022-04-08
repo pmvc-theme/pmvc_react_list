@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { useCSS, mixClass, SemanticUI } from "react-atomic-molecule";
 
 import SimpleHeader from "./SimpleHeader";

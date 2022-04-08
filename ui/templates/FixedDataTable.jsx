@@ -1,4 +1,4 @@
-import React, { PureComponent, Children } from "react";
+import { PureComponent, Children } from "react";
 import { Table, Column, Cell } from "fixed-data-table-2";
 import needCSS from "need-css";
 
@@ -77,7 +77,7 @@ class List extends PureComponent {
     return (
       <Table
         rowHeight={100}
-        rowsCount={rows.length}
+        rowCount={rows.length}
         width={tableWidth}
         height={tableHeight}
         overflowX="auto"

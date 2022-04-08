@@ -1,7 +1,3 @@
-import React, { Component } from "react";
+const SimpleColumn = props => null;
 
-export default class SimpleColumn extends Component {
-  render() {
-    return <div />;
-  }
-}
+export default SimpleColumn;

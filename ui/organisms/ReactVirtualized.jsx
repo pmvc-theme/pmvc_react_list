@@ -1,4 +1,4 @@
-import React, { Children, cloneElement } from "react";
+import { Children } from "react";
 import { mixClass, build, SemanticUI } from "react-atomic-molecule";
 import get from "get-object-value";
 
