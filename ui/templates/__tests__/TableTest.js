@@ -5,7 +5,7 @@ import Table from "../Table";
 import Column from "../../organisms/Column";
 import Cell from "../../organisms/Cell";
 
-describe("Test Simple Body", () => {
+describe("Test Table", () => {
   it("basic test", () => {
     const wrap = render(<Table />);
     expect(wrap.html()).to.have.string("table");
