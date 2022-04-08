@@ -41,7 +41,7 @@ const RVHeader = ({ getCellStyle, tr, ...props }) => {
         isScrolling,
         isVisible,
         style,
-        parent
+        parent,
       }) => {
         if (!children.hasOwnProperty(columnIndex)) {
           return null;
@@ -52,11 +52,11 @@ const RVHeader = ({ getCellStyle, tr, ...props }) => {
           key,
           columnIndex,
           rowIndex,
-          style: Styles.inner
+          style: Styles.inner,
         };
         const cellStyle = {
           ...Styles.headerCell,
-          ...style
+          ...style,
         };
         const jsx = getCell(header, cellProps, cellStyle);
         if (!columnIndex) {
@@ -89,7 +89,7 @@ const RVBody = ({ getCellStyle, tr, ...props }) => {
         isScrolling,
         isVisible,
         style,
-        parent
+        parent,
       }) => {
         if (!children.hasOwnProperty(columnIndex)) {
           return null;
@@ -100,14 +100,14 @@ const RVBody = ({ getCellStyle, tr, ...props }) => {
           key,
           columnIndex,
           rowIndex,
-          style: Styles.inner
+          style: Styles.inner,
         };
         const jsx = getCell(cell, cellProps);
         const thisTR = getTR(tr, rowIndex);
         const cellStyle = {
           ...get(thisTR, ["props", "style"], []),
           ...Styles.cell,
-          ...style
+          ...style,
         };
         return (
           <SemanticUI
@@ -128,12 +128,12 @@ export { RVHeader, RVBody };
 
 const Styles = {
   inner: {
-    height: "100%"
+    height: "100%",
   },
   cell: {
     padding: 5,
     borderLeft: "1px solid rgba(34, 36, 38, 0.1)",
-    borderTop: "1px solid rgba(34, 36, 38, 0.1)"
+    borderTop: "1px solid rgba(34, 36, 38, 0.1)",
   },
   headerCell: {
     padding: 5,
@@ -141,14 +141,14 @@ const Styles = {
     borderTop: "1px solid rgba(34, 36, 38, 0.1)",
     whiteSpace: "nowrap",
     lineHeight: "30px",
-    background: "#f9fafb"
+    background: "#f9fafb",
   },
   header: {
     overflowX: "hidden",
-    overflowY: "hidden"
+    overflowY: "hidden",
   },
   body: {
     overflowX: "scroll",
-    overflowY: "scroll"
-  }
+    overflowY: "scroll",
+  },
 };

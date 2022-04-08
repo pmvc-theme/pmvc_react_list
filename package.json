@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_list",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "pmvc list template",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -18,14 +18,15 @@
   },
   "devDependencies": {
     "fixed-data-table-2": "*",
-    "react": "^16.x",
-    "react-dom": "^16.x",
+    "react": "^18.x",
+    "react-dom": "^18.x",
     "react-virtualized": "*",
     "reshow-app": "*"
   },
   "scripts": {
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "format": "prettier-eslint --write 'src/**/*.js' 'ui/**/*.jsx'",
     "copy": "cp build/cjs/src/rv.js ./ && cp build/cjs/src/fixedDataTable.js ./",
+    "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build:cjs:src": "BABEL_ENV=cjs babel src -d build/cjs/src",
     "build:cjs:ui": "BABEL_ENV=cjs babel ui -d build/cjs/ui",
     "build:cjs": "npm run build:cjs:src && npm run build:cjs:ui",
@@ -33,7 +34,10 @@
     "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui",
     "build:es": "npm run build:es:src && npm run build:es:ui",
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run copy",
-    "prepublish": "npm run build"
+    "mochaFor": "mocha -r global-jsdom/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
+    "prepublish": "npm run test"
   },
   "files": [
     "build",

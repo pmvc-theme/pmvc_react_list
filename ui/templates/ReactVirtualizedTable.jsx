@@ -2,7 +2,7 @@ import React, { Children } from "react";
 import { SemanticUI } from "react-atomic-molecule";
 import { ScrollSync, AutoSizer, ColumnSizer } from "react-virtualized";
 
-import { RVHeader, RVBody } from "../organisms/react_virtualized";
+import { RVHeader, RVBody } from "../organisms/ReactVirtualized";
 
 const ReactVirtualizedTable = ({
   style,
@@ -22,7 +22,7 @@ const ReactVirtualizedTable = ({
       scrollHeight,
       scrollLeft,
       scrollTop,
-      scrollWidth
+      scrollWidth,
     }) => {
       if (!style) {
         style = Styles.container;
@@ -71,7 +71,7 @@ ReactVirtualizedTable.defaultProps = {
   scrollbarWidth: 19,
   headerHeight: 40,
   getHeaderCellStyle: (orgStyles, rowIndex, colIndex) => orgStyles,
-  getBodyCellStyle: (orgStyles, rowIndex, colIndex) => orgStyles
+  getBodyCellStyle: (orgStyles, rowIndex, colIndex) => orgStyles,
 };
 
 export default ReactVirtualizedTable;
@@ -81,6 +81,6 @@ const Styles = {
     borderRight: "1px solid rgba(34, 36, 38, 0.1)",
     borderBottom: "1px solid rgba(34, 36, 38, 0.1)",
     borderRadius: ".28571429rem",
-    width: "100%"
-  }
+    width: "100%",
+  },
 };

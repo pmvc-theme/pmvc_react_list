@@ -2,52 +2,47 @@ import React from "react";
 import { CellMeasurer, CellMeasurerCache, Grid } from "react-virtualized";
 import { build, SemanticUI } from "react-atomic-molecule";
 
-const defaultCellRenderer = ({
-  rowLocator,
-  colLocator,
-  getCellStyle,
-  cellRenderer,
-  cache,
-  rows,
-}) => (cellProps) => {
-  const {
-    rowIndex,
-    columnIndex,
-    key,
-    style,
-    isScrolling,
-    isVisible,
-    parent,
-    ...otherCellProps
-  } = cellProps;
-  const comp = cellRenderer
-    ? cellRenderer(cellProps)
-    : (() => {
-        const row = rowLocator(rowIndex, rows);
-        const cell = colLocator(columnIndex, row);
-        otherCellProps.style = getCellStyle(style, rowIndex, columnIndex);
-        return build(cell, { wrap: SemanticUI })({
-          key,
-          "data-is-scrolling": isScrolling,
-          ...otherCellProps,
-        });
-      })();
-  return cache
-    ? (() => {
-        return (
-          <CellMeasurer
-            cache={cache}
-            columnIndex={columnIndex}
-            key={key}
-            parent={parent}
-            rowIndex={rowIndex}
-          >
-            {comp}
-          </CellMeasurer>
-        );
-      })()
-    : comp;
-};
+const defaultCellRenderer =
+  ({ rowLocator, colLocator, getCellStyle, cellRenderer, cache, rows }) =>
+  (cellProps) => {
+    const {
+      rowIndex,
+      columnIndex,
+      key,
+      style,
+      isScrolling,
+      isVisible,
+      parent,
+      ...otherCellProps
+    } = cellProps;
+    const comp = cellRenderer
+      ? cellRenderer(cellProps)
+      : (() => {
+          const row = rowLocator(rowIndex, rows);
+          const cell = colLocator(columnIndex, row);
+          otherCellProps.style = getCellStyle(style, rowIndex, columnIndex);
+          return build(cell, { wrap: SemanticUI })({
+            key,
+            "data-is-scrolling": isScrolling,
+            ...otherCellProps,
+          });
+        })();
+    return cache
+      ? (() => {
+          return (
+            <CellMeasurer
+              cache={cache}
+              columnIndex={columnIndex}
+              key={key}
+              parent={parent}
+              rowIndex={rowIndex}
+            >
+              {comp}
+            </CellMeasurer>
+          );
+        })()
+      : comp;
+  };
 
 /**
  * Source

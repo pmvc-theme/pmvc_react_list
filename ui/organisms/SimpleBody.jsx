@@ -40,10 +40,14 @@ const SimpleBody = (props) => {
       );
       arr.push(jsx);
     }
-    return arr;
+    if (arr.length) {
+      return <tbody>{arr}</tbody>;
+    } else {
+      return null;
+    }
   };
 
-  return <tbody>{renderTR()}</tbody>;
+  return renderTR();
 };
 
 export default SimpleBody;
