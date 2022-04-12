@@ -1,8 +1,7 @@
-
 import { SemanticUI } from "react-atomic-molecule";
 
-const SimpleCell = ({ rowIndex, columnKey, columnIndex, ...others }) => (
+const Cell = ({ rowIndex, columnIndex, ...others }) => (
   <SemanticUI {...others} data-row={rowIndex} data-col={columnIndex} />
 );
 
-export default SimpleCell;
+export default Cell;

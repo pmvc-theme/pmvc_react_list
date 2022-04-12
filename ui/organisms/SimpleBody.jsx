@@ -3,7 +3,7 @@ import { build } from "react-atomic-molecule";
 import Cell from "../organisms/Cell";
 
 const SimpleBody = (props) => {
-  const { tr, rowCount, children } = props;
+  const { tr = Cell, rowCount, children } = props;
 
   const renderTD = (rowIndex) => {
     const arr = [];
@@ -28,7 +28,7 @@ const SimpleBody = (props) => {
   const renderTR = () => {
     const arr = [];
     for (let i = 0, len = rowCount; i < len; i++) {
-      const jsx = build(tr || Cell, {
+      const jsx = build(tr, {
         doCallFunction: true,
       })(
         {
