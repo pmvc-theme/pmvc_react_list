@@ -1,3 +1,4 @@
+import { Children } from "react";
 import { CellMeasurer, CellMeasurerCache, Grid } from "react-virtualized";
 import { build, SemanticUI } from "react-atomic-molecule";
 
@@ -70,7 +71,7 @@ const RVGrid = (props) => {
   const rows = rowsLocator ? rowsLocator(rows) : props.rows;
   if (rows && rows[0]) {
     if (children) {
-      React.Children.forEach(children, (child, key) => {
+      Children.forEach(children, (child, key) => {
         if (!child) {
           return;
         }

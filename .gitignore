@@ -5,5 +5,3 @@ coverage*
 .php_cs.cache
 build
 .*.sw?
-/rv.js
-/fixedDataTable.js

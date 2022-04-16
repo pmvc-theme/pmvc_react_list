@@ -1,14 +1,26 @@
 {
+  "version": "0.5.4",
   "name": "pmvc_react_list",
-  "version": "0.5.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmvc-theme/pmvc_react_list"
+  },
   "description": "pmvc list template",
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
-  "repository": "pmvc-theme/pmvc_react_list",
   "keywords": [
     "react",
     "reactjs"
   ],
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.mjs",
+  "exports": {
+    "./grid": "./grid.js",
+    "./rv": "./rv.js",
+    "./fixedDataTable": "./fixedDataTable.js",
+    ".": {
+      "require": "./build/cjs/src/index.js",
+      "import": "./build/es/src/index.mjs"
+    }
+  },
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -25,17 +37,16 @@
   },
   "scripts": {
     "format": "prettier-eslint --write 'src/**/*.js' 'ui/**/*.jsx'",
-    "copy": "cp build/cjs/src/rv.js ./ && cp build/cjs/src/fixedDataTable.js ./",
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build:cjs:src": "BABEL_ENV=cjs babel src -d build/cjs/src",
-    "build:cjs:ui": "BABEL_ENV=cjs babel ui -d build/cjs/ui",
+    "build:cjs:src": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__",
+    "build:cjs:ui": "BABEL_ENV=cjs babel ui -d build/cjs/ui --ignore /**/__tests__",
     "build:cjs": "npm run build:cjs:src && npm run build:cjs:ui",
-    "build:es:src": "BABEL_ENV=es babel src -d build/es/src",
-    "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui",
+    "build:es:src": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs",
+    "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui --out-file-extension .mjs",
     "build:es": "npm run build:es:src && npm run build:es:ui",
-    "build": "npm run clean && npm run build:cjs && npm run build:es && npm run copy",
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
     "mochaFor": "mocha -r global-jsdom/register",
-    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
@@ -43,6 +54,7 @@
     "build",
     "fixedDataTable.js",
     "rv.js",
+    "grid.js",
     "package.json",
     "README.md"
   ]

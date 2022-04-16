@@ -77,7 +77,7 @@ class List extends PureComponent {
     return (
       <Table
         rowHeight={100}
-        rowCount={rows.length}
+        rowsCount={rows.length}
         width={tableWidth}
         height={tableHeight}
         overflowX="auto"
