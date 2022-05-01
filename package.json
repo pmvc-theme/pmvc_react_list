@@ -1,5 +1,5 @@
 {
-  "version": "0.5.5",
+  "version": "0.5.6",
   "name": "pmvc_react_list",
   "repository": {
     "type": "git",
@@ -10,17 +10,6 @@
     "react",
     "reactjs"
   ],
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.mjs",
-  "exports": {
-    "./grid": "./grid.js",
-    "./rv": "./rv.js",
-    "./fixedDataTable": "./fixedDataTable.js",
-    ".": {
-      "require": "./build/cjs/src/index.js",
-      "import": "./build/es/src/index.mjs"
-    }
-  },
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -35,6 +24,26 @@
     "react-virtualized": "*",
     "reshow-app": "*"
   },
+  "exports": {
+    "./grid": {
+      "require": "./build/cjs/ui/organisms/RVGrid.js",
+      "import": "./build/es/ui/organisms/RVGrid.mjs"
+    },
+    "./rv": {
+      "require": "./build/cjs/ui/templates/ReactVirtualizedTable.js",
+      "import": "./build/es/ui/templates/ReactVirtualizedTable.mjs"
+    },
+    "./fixedDataTable": {
+      "require": "./build/cjs/ui/templates/FixedDataTable.js",
+      "import": "./build/es/ui/templates/FixedDataTable.mjs"
+    },
+    ".": {
+      "require": "./build/cjs/src/index.js",
+      "import": "./build/es/src/index.mjs"
+    }
+  },
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "scripts": {
     "format": "prettier-eslint --write 'src/**/*.js' 'ui/**/*.jsx'",
     "clean": "find ./build -name '*.*' | xargs rm -rf",
@@ -52,9 +61,6 @@
   },
   "files": [
     "build",
-    "fixedDataTable.js",
-    "rv.js",
-    "grid.js",
     "package.json",
     "README.md"
   ]
