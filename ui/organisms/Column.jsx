@@ -1,3 +1,3 @@
-const SimpleColumn = props => null;
+const SimpleColumn = (props) => null;
 
 export default SimpleColumn;

@@ -1,5 +1,6 @@
-import SimpleTable from "../organisms/SimpleTable";
 import get from "get-object-value";
+
+import SimpleTable from "../organisms/SimpleTable";
 
 const Table = (props) => {
   let rows = get(props, ["rows"], []);
